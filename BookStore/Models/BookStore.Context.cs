@@ -12,6 +12,8 @@ namespace BookStore.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class BookStoreEntities : DbContext
     {
@@ -28,5 +30,10 @@ namespace BookStore.Models
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Stock> Stocks { get; set; }
+    
+        public virtual int spSetTestData()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spSetTestData");
+        }
     }
 }

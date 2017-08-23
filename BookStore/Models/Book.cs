@@ -22,7 +22,7 @@ namespace BookStore.Models
     
         public int BookID { get; set; }
         public string BookName { get; set; }
-        public int ReleaseYear { get; set; }
+        public System.DateTime ReleaseYear { get; set; }
         public int AuthorID { get; set; }
     
         public virtual Author Author { get; set; }

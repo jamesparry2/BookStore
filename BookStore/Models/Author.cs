@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
 namespace BookStore.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Author
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,20 +19,10 @@ namespace BookStore.Models
         {
             this.Books = new HashSet<Book>();
         }
-        
-        [Display(Name = "Unique Key")]
+    
         public int AuthorID { get; set; }
-
-        [Display(Name = "First Name")]
-        [Required]
         public string AuthorFirstName { get; set; }
-
-        [Display(Name = "Last Name")]
-        [Required]
         public string AuthorLastName { get; set; }
-
-        [Display(Name = "Birth Year")]
-        [Required]
         public System.DateTime AuthorBirthYear { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

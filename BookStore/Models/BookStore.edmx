@@ -20,7 +20,7 @@
           </Key>
           <Property Name="BookID" Type="int" Nullable="false" />
           <Property Name="BookName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ReleaseYear" Type="int" Nullable="false" />
+          <Property Name="ReleaseYear" Type="date" Nullable="false" />
           <Property Name="AuthorID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Stock">
@@ -29,7 +29,7 @@
           </Key>
           <Property Name="BookID" Type="int" Nullable="false" />
           <Property Name="StockCount" Type="int" Nullable="false" />
-          <Property Name="LoanLength" Type="date" Nullable="false" />
+          <Property Name="LoanLength" Type="int" Nullable="false" />
           <Property Name="StockID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Book_Author">
@@ -56,6 +56,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spSetTestData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="BookStoreModelStoreContainer">
           <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
@@ -90,7 +91,7 @@
           </Key>
           <Property Name="BookID" Type="Int32" Nullable="false" />
           <Property Name="BookName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ReleaseYear" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseYear" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AuthorID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Author" Relationship="Self.FK_Book_Author" FromRole="Book" ToRole="Author" />
           <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_Book" FromRole="Book" ToRole="Stock" />
@@ -101,7 +102,7 @@
           </Key>
           <Property Name="BookID" Type="Int32" Nullable="false" />
           <Property Name="StockCount" Type="Int32" Nullable="false" />
-          <Property Name="LoanLength" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LoanLength" Type="Int32" Nullable="false" />
           <Property Name="StockID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Book" Relationship="Self.FK_Stock_Book" FromRole="Stock" ToRole="Book" />
         </EntityType>
@@ -141,6 +142,7 @@
             <End Role="Book" EntitySet="Books" />
             <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
+          <FunctionImport Name="spSetTestData" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -178,6 +180,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spSetTestData" FunctionName="BookStoreModel.Store.spSetTestData" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

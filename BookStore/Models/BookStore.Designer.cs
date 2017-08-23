@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'c:\users\james\documents\visual studio 2015\Projects\BookStore\BookStore\Models\BookStore.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\James\documents\visual studio 2015\Projects\BookStore\BookStore\Models\BookStore.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

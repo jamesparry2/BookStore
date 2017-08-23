@@ -14,6 +14,16 @@ namespace BookStore.Controllers
     {
         private BookStoreEntities db = new BookStoreEntities();
 
+        [HttpGet]
+        public ActionResult _BookForAuthor(int AuthorId)
+        {
+            var Query = (from p in db.Books
+                         where p.AuthorID == AuthorId
+                         select p.BookName).ToList();
+
+            return PartialView(Query.AsEnumerable());
+        }
+
         // GET: Authors
         public ActionResult Index()
         {

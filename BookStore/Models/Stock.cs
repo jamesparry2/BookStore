@@ -16,7 +16,7 @@ namespace BookStore.Models
     {
         public int BookID { get; set; }
         public int StockCount { get; set; }
-        public System.DateTime LoanLength { get; set; }
+        public int LoanLength { get; set; }
         public int StockID { get; set; }
     
         public virtual Book Book { get; set; }

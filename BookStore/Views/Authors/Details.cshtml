@@ -36,7 +36,31 @@
 
     </dl>
 </div>
+<div id="checkBoxForList">
+    @Html.Label("Please tick if you want to view related books!")
+    @Html.CheckBox("BookList", false, new { name = "optradio" })
+</div>
+<div id= "ListOfRelatedBooks" hidden="hidden">
+    @{
+        Html.RenderPartial("_BooksForAuthor", Model.Books);
+    }
+</div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AuthorID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script>
+    $('#BookList').click(function () {
+        var output = $('#BookList').is(':checked');
+        if (output) {
+            $('#ListOfRelatedBooks').css('display', 'block');
+        } else {
+            $('#ListOfRelatedBooks').css('display', 'none');
+        }
+        }
+    )
+</script>

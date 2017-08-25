@@ -5,10 +5,12 @@
 }
 
 <h2>@ViewBag.Title</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning btn-sm" })
-</p>
+@if (this.User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning btn-sm" })
+    </p>
+}
 <table class="table table-bordered table-condensed table-hover">
     <tr>
         <th>

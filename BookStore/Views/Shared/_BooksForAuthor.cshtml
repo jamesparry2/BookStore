@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<BookStore.Models.Book>
 
 <div>
-    <table class="table">
-        <tr>
-            <th>Book Name</th>
-            <th>Release Year</th>
-        </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.BookName</td>
-                    <td>@item.ReleaseYear</td>
-                </tr>
-            }
+    <table class="table table-bordered table-condensed table-hover">
+        <thead class="table thead-inverse">
+            <tr>
+                <th>Book Name</th>
+                <th>Release Year</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+         {
+         <tr>
+               <td>@item.BookName</td>
+               <td>@item.ReleaseYear</td>
+               <td>@Html.ActionLink("View Book", "Details", "Books", new { id=item.BookID }, new { @class = "btn btn-warning" }) </td>
+         </tr>
+         }
     </table>
 </div>

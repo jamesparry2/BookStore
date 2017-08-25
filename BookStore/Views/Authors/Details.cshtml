@@ -1,10 +1,10 @@
 ﻿@model BookStore.Models.Author
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details about the Author";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
     <h4>Author</h4>
@@ -38,6 +38,7 @@
 </div>
 <div id="checkBoxForList">
     @Html.Label("Please tick if you want to view related books!")
+
     @Html.CheckBox("BookList", false, new { name = "optradio" })
 </div>
 <div id= "ListOfRelatedBooks" hidden="hidden">
@@ -47,8 +48,8 @@
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AuthorID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AuthorID }, new { @class = "btn btn-info" }) 
+    @Html.ActionLink("Back to Homepage", "Index", null, new { @class = "btn btn-info"} )
 </p>
 
 @Scripts.Render("~/bundles/jquery")

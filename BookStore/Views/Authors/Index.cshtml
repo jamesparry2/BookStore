@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<BookStore.Models.Author>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Author List Page";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-warning btn-sm" })
 </p>
-<table class="table">
+<table class="table table-bordered table-condensed table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.AuthorFirstName)
@@ -35,9 +35,9 @@
             @Html.DisplayFor(modelItem => item.AuthorBirthYear)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AuthorID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AuthorID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AuthorID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.AuthorID } , new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Details", "Details", new { id=item.AuthorID }, new { @class = "btn btn-primary btn-sm" })
+            @Html.ActionLink("Delete", "Delete", new { id=item.AuthorID }, new { @class = "btn btn-primary btn-sm" })
         </td>
     </tr>
 }

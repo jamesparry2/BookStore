@@ -11,7 +11,8 @@ namespace BookStore.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Book
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,12 @@ namespace BookStore.Models
         }
     
         public int BookID { get; set; }
+
+        [Display(Name = "Name of book")]
         public string BookName { get; set; }
+
+        [Display(Name = "Release Year of book")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public System.DateTime ReleaseYear { get; set; }
         public int AuthorID { get; set; }
     

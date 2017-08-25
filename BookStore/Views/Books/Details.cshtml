@@ -1,4 +1,4 @@
-﻿@model BookStore.Models.Book
+﻿@model BookStore.Models.BookStockViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,32 +11,33 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BookName)
+            @Html.DisplayNameFor(model => model.book.BookName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookName)
+            @Html.DisplayFor(model => model.book.BookName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ReleaseYear)
+            @Html.DisplayNameFor(model => model.book.ReleaseYear)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ReleaseYear)
+            @Html.DisplayFor(model => model.book.ReleaseYear)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Author.AuthorFirstName)
+            @Html.DisplayNameFor(model => model.author.AuthorFirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author.AuthorFirstName)
+            @Html.DisplayFor(model => model.book.Author.AuthorFirstName)
         </dd>
-
+        @Html.Action("GetStock", new { bookId = Model.book.BookID })
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.book.BookID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -14,6 +14,25 @@ namespace BookStore.Controllers
     {
         private BookStoreEntities db = new BookStoreEntities();
 
+        public PartialViewResult GetStock(int bookId)
+        {
+            BookStockViewModel objReturnStock = GetStockCount(bookId);
+
+            return PartialView("~/Views/Shared/_StockForBooks.cshtml", objReturnStock);
+
+        }
+
+        private BookStockViewModel GetStockCount(int bookId)
+        {
+            var Query = (from p in db.Stocks
+                         where p.BookID == bookId
+                         select p.StockCount).FirstOrDefault();
+            BookStockViewModel objReturn = new BookStockViewModel();
+            objReturn.stock.StockCount = Query;
+
+            return objReturn;
+        }
+
         // GET: Books
         public ActionResult Index()
         {
@@ -29,11 +48,13 @@ namespace BookStore.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Book book = db.Books.Find(id);
+            BookStockViewModel books = new BookStockViewModel();
+            books.book = book;
             if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(book);
+            return View(books);
         }
 
         // GET: Books/Create

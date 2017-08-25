@@ -11,11 +11,16 @@ namespace BookStore.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Stock
     {
         public int BookID { get; set; }
+
+        [Display(Name = "Stock Count")]
         public int StockCount { get; set; }
+
+        [Display(Name = "Length of Loan")]
         public int LoanLength { get; set; }
         public int StockID { get; set; }
     

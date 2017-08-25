@@ -21,7 +21,7 @@ namespace BookStore.Controllers
                          where p.AuthorID == AuthorId
                          select p.BookName).ToList();
 
-            return PartialView(Query.AsEnumerable());
+            return PartialView("_BooksForAuthor",Query.AsEnumerable());
         }
 
         // GET: Authors

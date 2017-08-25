@@ -232,6 +232,7 @@
       <DependentUpon>BookStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BookAuthorViewModel.cs" />
+    <Compile Include="Models\BookStockViewModel.cs" />
     <Compile Include="Models\BookStore.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -312,6 +313,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SQLScripts\SQLTestDataScript.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -364,6 +366,7 @@
     <Content Include="Views\Stocks\Edit.cshtml" />
     <Content Include="Views\Stocks\Index.cshtml" />
     <Content Include="Views\Shared\_BooksForAuthor.cshtml" />
+    <Content Include="Views\Shared\_StockForBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

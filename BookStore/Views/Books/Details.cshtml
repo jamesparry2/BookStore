@@ -38,6 +38,6 @@
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.book.BookID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.book.BookID }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
 </p>

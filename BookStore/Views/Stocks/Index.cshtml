@@ -1,21 +1,15 @@
 ﻿@model IEnumerable<BookStore.Models.Stock>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Stock dashboard";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-bordered table-condensed">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.StockCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoanLength)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Book.BookName)
@@ -29,15 +23,21 @@
             @Html.DisplayFor(modelItem => item.StockCount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LoanLength)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Book.BookName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StockID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StockID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StockID })
+            @if (this.User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Modify Stockfeed", "Edit", new { id = item.StockID }, new { @class = "btn btn-primary btn-sm" })
+            }
+            @if (this.User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Details", "Details", new { id = item.StockID }, new { @class = "btn btn-primary btn-sm" })
+            }
+            @if (this.User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Remove Stock", "Delete", new { id = item.StockID }, new { @class = "btn btn-primary btn-sm" })
+            }
         </td>
     </tr>
 }

@@ -10,6 +10,7 @@ using BookStore.Models;
 
 namespace BookStore.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StocksController : Controller
     {
         private BookStoreEntities db = new BookStoreEntities();
@@ -39,7 +40,11 @@ namespace BookStore.Controllers
         // GET: Stocks/Create
         public ActionResult Create()
         {
-            ViewBag.BookID = new SelectList(db.Books, "BookID", "BookName");
+            var BooksThatHaveStock = (from p in db.Stocks
+                                      where p.StockID == 0
+                                      select p.Book).ToList();
+
+            ViewBag.BookID = new SelectList(BooksThatHaveStock, "BookID", "BookName");
             return View();
         }
 

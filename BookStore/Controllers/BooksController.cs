@@ -58,6 +58,7 @@ namespace BookStore.Controllers
         }
 
         // GET: Books/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.AuthorID = new SelectList(db.Authors, "AuthorID", "AuthorFirstName");
@@ -69,10 +70,20 @@ namespace BookStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "BookID,BookName,ReleaseYear,AuthorID")] Book book)
         {
             if (ModelState.IsValid)
             {
+                Stock newStock = new Stock();
+                int currentLeargetStockId = db.Stocks.Max(x => x.StockID);
+
+                newStock.StockID = currentLeargetStockId + 1;
+                newStock.StockCount = 0;
+                newStock.BookID = book.BookID;
+                newStock.LoanLength = 5;
+
+                db.Stocks.Add(newStock);
                 db.Books.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,6 +94,7 @@ namespace BookStore.Controllers
         }
 
         // GET: Books/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +115,7 @@ namespace BookStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "BookID,BookName,ReleaseYear,AuthorID")] Book book)
         {
             if (ModelState.IsValid)
@@ -116,6 +129,7 @@ namespace BookStore.Controllers
         }
 
         // GET: Books/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -133,6 +147,7 @@ namespace BookStore.Controllers
         // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Book book = db.Books.Find(id);

@@ -18,7 +18,7 @@
                 <li>@Html.ActionLink("Books", "Index", "Books")</li>
                 @if (this.User.IsInRole("Admin"))
                 {
-                    <li>@Html.ActionLink("Creating Stock", "", "")</li>
+                    <li>@Html.ActionLink("Creating Stock", "Index", "Stocks")</li>
                 }
             </ul>          
         </div>
@@ -27,7 +27,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Bookstore Monitoring Application V 1.0.0</p>
         </footer>
     </div>
 

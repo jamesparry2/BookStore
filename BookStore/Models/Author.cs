@@ -23,13 +23,16 @@ namespace BookStore.Models
         public int AuthorID { get; set; }
 
         [Display(Name = "Authors Forename")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string AuthorFirstName { get; set; }
 
         [Display(Name = "Authors Surname")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string AuthorLastName { get; set; }
 
         [Display(Name = "Birth Year")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public System.DateTime AuthorBirthYear { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

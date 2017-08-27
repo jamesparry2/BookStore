@@ -126,10 +126,37 @@ namespace BookStore.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Author author = db.Authors.Find(id);
+
+            //Find all the books associated with the author
+            List<Book> book = (from p in db.Books
+                              where p.AuthorID == id
+                              select p).ToList();
+
+            //Check if there are any books exisist  
+            if (book != null)
+            {
+                //Loop through each book and find the stock assoicated with that book and removed it 
+                foreach (var item in book)
+                {
+                    Stock stock = (from p in db.Stocks
+                                   where p.BookID == item.BookID
+                                   select p).First();
+                    db.Stocks.Remove(stock);
+
+                }
+
+                //Loop through and remove the book
+                foreach (var item in book)
+                {
+                    db.Books.Remove(item);
+                }
+            }
+
+            //Finally remove the author
             db.Authors.Remove(author);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        } 
 
         protected override void Dispose(bool disposing)
         {

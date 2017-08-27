@@ -151,6 +151,14 @@ namespace BookStore.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Book book = db.Books.Find(id);
+            int BookId = id;
+            Stock stock = (from p in db.Stocks
+                          where p.BookID == id
+                          select p).FirstOrDefault();
+            if(stock != null)
+            {
+                db.Stocks.Remove(stock);
+            }
             db.Books.Remove(book);
             db.SaveChanges();
             return RedirectToAction("Index");

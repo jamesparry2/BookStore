@@ -27,8 +27,10 @@ namespace BookStore.Models
         public string BookName { get; set; }
 
         [Display(Name = "Release Year of book")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public System.DateTime ReleaseYear { get; set; }
+
         public int AuthorID { get; set; }
     
         public virtual Author Author { get; set; }

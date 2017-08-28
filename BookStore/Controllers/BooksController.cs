@@ -22,6 +22,11 @@ namespace BookStore.Controllers
 
         }
 
+        /*@Param Integer value of book id
+         *@return An object view model for Book and Stock
+         * A method which will pass back the correct stock 
+         * for the desired book and a BookStockViewModel
+         */ 
         private BookStockViewModel GetStockCount(int bookId)
         {
             var Query = (from p in db.Stocks

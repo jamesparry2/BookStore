@@ -314,6 +314,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SQLScripts\AdminAccountDetails.txt" />
     <Content Include="SQLScripts\Database Design Relations.png" />
     <Content Include="SQLScripts\DB_AND_TABLE_SCRIPT.txt" />
     <Content Include="SQLScripts\SQLTestDataScript.txt" />

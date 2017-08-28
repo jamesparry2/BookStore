@@ -14,16 +14,6 @@ namespace BookStore.Controllers
     {
         private BookStoreEntities db = new BookStoreEntities();
 
-        [HttpGet]
-        public ActionResult _BookForAuthor(int AuthorId)
-        {
-            var Query = (from p in db.Books
-                         where p.AuthorID == AuthorId
-                         select p.BookName).ToList();
-
-            return PartialView("_BooksForAuthor",Query.AsEnumerable());
-        }
-
         // GET: Authors
         public ActionResult Index()
         {
@@ -175,6 +165,19 @@ namespace BookStore.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        //For the partail view, returns to the model which books relate
+        //to the corresponding author
+        [HttpGet]
+        public ActionResult _BookForAuthor(int AuthorId)
+        {
+            var Query = (from p in db.Books
+                         where p.AuthorID == AuthorId
+                         select p.BookName).ToList();
+
+            return PartialView("_BooksForAuthor", Query.AsEnumerable());
         }
     }
 }

@@ -71,19 +71,37 @@ namespace BookStore.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "BookID,BookName,ReleaseYear,AuthorID")] Book book)
+        public ActionResult Create([Bind(Include = "BookName,ReleaseYear,AuthorID")] Book book)
         {
             if (ModelState.IsValid)
             {
                 Stock newStock = new Stock();
-                int currentLeargetStockId = db.Stocks.Max(x => x.StockID);
+
+                int currentLeargetStockId = 0;
+                int bookId = 0;
+                try
+                {
+                    currentLeargetStockId = db.Stocks.Max(x => x.StockID);
+                } catch (Exception)
+                {
+                    //DO NOTHING
+                }
+
+                try
+                {
+                    bookId = db.Books.Max(x => x.BookID);
+                } catch (Exception)
+                {
+                    //DO Nothing
+                }
+                book.BookID = ++bookId;
 
                 newStock.StockID = currentLeargetStockId + 1;
                 newStock.StockCount = 0;
                 newStock.BookID = book.BookID;
                 newStock.LoanLength = 5;
-
                 db.Stocks.Add(newStock);
+
                 db.Books.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("Index");

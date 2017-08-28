@@ -58,10 +58,20 @@ namespace BookStore.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "AuthorID,AuthorFirstName,AuthorLastName,AuthorBirthYear")] Author author)
+        public ActionResult Create([Bind(Include = "AuthorFirstName,AuthorLastName,AuthorBirthYear")] Author author)
         {
             if (ModelState.IsValid)
             {
+                int AuthorId = 0;
+                try
+                {
+                    AuthorId = db.Authors.Max(x => x.AuthorID);
+                    author.AuthorID = ++AuthorId;
+                } catch (Exception e)
+                {
+                    author.AuthorID = ++AuthorId;
+                }
+
                 db.Authors.Add(author);
                 db.SaveChanges();
                 return RedirectToAction("Index");
